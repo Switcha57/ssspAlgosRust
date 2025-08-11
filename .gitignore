@@ -1,0 +1,35 @@
+# Rust
+/target/
+**/*.rs.bk
+Cargo.lock
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Benchmark results
+/benchmark_results/
+criterion/
+
+# Test outputs
+test_*.txt
+test_*.json
+test_*.dimacs
+benchmark_report.md
+
+# Generated data
+/data/generated/
+
+# Documentation builds
+/docs/book/
+/docs/_build/
+
+# Local development
+.env
+local_*
