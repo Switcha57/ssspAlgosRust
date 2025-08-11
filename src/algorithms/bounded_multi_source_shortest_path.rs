@@ -77,6 +77,17 @@ fn findPivot(
     (p, w)
 }
 
+fn count_tree_vertices(children: &HashMap<usize, Vec<usize>>, root: usize) -> usize{
+
+        let mut count = 1;
+
+        if let Some(child) = children.get(&root)  {
+            for &node in child{
+                count += count_tree_vertices(children,child);
+            }
+        }
+        count
+}
 
 pub fn bmssp(graph: &crate::graph::Graph, start: usize) -> HashMap<usize, usize> {
  
