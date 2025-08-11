@@ -1,6 +1,6 @@
-use sssp_algos::{dijkstra, new_algorithm, generate_random_graph, BenchmarkResult};
+use sssp_algos::{dijkstra, bfs, generate_random_graph, BenchmarkResult};
 use std::time::Instant;
-
+use std::iter::repeat;
 fn main() {
     println!("SSSP Algorithms Benchmark");
     println!("========================");
@@ -11,7 +11,8 @@ fn main() {
     
     for &size in &graph_sizes {
         println!("\nTesting graph with {} nodes", size);
-        println!("-".repeat(40));
+        let border: String = "_".repeat(40);
+        println!("{}",border);
         
         let graph = generate_random_graph(size, edge_density);
         println!("Generated graph: {} nodes, {} edges", 
@@ -32,7 +33,7 @@ fn main() {
         
         // Benchmark New Algorithm
         let start_time = Instant::now();
-        let new_algo_result = new_algorithm(&graph, start_node);
+        let new_algo_result = bfs(&graph, start_node);
         let new_algo_time = start_time.elapsed();
         
         let new_algo_benchmark = BenchmarkResult {

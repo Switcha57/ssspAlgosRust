@@ -1,4 +1,4 @@
-use sssp_algos::{dijkstra, new_algorithm, create_test_graph, generate_random_graph};
+use sssp_algos::{dijkstra, bfs, create_test_graph, generate_random_graph};
 
 #[test]
 fn test_algorithms_consistency() {
@@ -6,7 +6,7 @@ fn test_algorithms_consistency() {
     let start_node = 0;
     
     let dijkstra_result = dijkstra(&graph, start_node);
-    let new_algo_result = new_algorithm(&graph, start_node);
+    let new_algo_result = bfs(&graph, start_node);
     
     // Both algorithms should compute distances for the same nodes
     assert_eq!(dijkstra_result.len(), new_algo_result.len());
@@ -22,7 +22,7 @@ fn test_algorithms_consistency() {
         assert!(new_algo_result.contains_key(node));
         
         // Uncomment this when your new algorithm is correctly implemented:
-        // assert_eq!(dijkstra_dist, new_algo_dist, "Distance mismatch for node {}", node);
+        assert_eq!(dijkstra_dist, new_algo_dist, "Distance mismatch for node {}", node);
     }
 }
 
@@ -49,7 +49,7 @@ fn test_random_graph_generation() {
     
     // Should be able to run algorithms on generated graph
     let dijkstra_result = dijkstra(&graph, 0);
-    let new_algo_result = new_algorithm(&graph, 0);
+    let new_algo_result = bfs(&graph, 0);
     
     assert_eq!(dijkstra_result.len(), 10);
     assert_eq!(new_algo_result.len(), 10);

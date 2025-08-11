@@ -36,8 +36,10 @@ impl Graph {
         self.add_edge(node2, node1, weight);
     }
     
-    pub fn neighbors(&self, node: usize) -> &Vec<(usize, usize)> {
-        self.adjacency_list.get(&node).unwrap_or(&Vec::new())
+    pub fn neighbors(&self, node: usize) -> &[(usize, usize)]  {
+        // static EMPTY: Vec<(usize, usize)> = Vec::new();
+        // self.adjacency_list.get(&node).unwrap_or(&EMPTY)
+        self.adjacency_list.get(&node).map_or(&[], |v| v.as_slice())
     }
     
     pub fn nodes(&self) -> &Vec<usize> {

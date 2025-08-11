@@ -1,5 +1,5 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion, BenchmarkId};
-use sssp_algos::{dijkstra, new_algorithm, generate_random_graph};
+use sssp_algos::{dijkstra, bfs, generate_random_graph};
 
 fn benchmark_algorithms(c: &mut Criterion) {
     let mut group = c.benchmark_group("SSSP Algorithms");
@@ -27,7 +27,7 @@ fn benchmark_algorithms(c: &mut Criterion) {
             size,
             |b, _| {
                 b.iter(|| {
-                    new_algorithm(black_box(&graph), black_box(start_node))
+                    bfs(black_box(&graph), black_box(start_node))
                 })
             },
         );

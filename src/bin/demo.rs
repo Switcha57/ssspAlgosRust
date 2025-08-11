@@ -1,4 +1,4 @@
-use sssp_algos::{dijkstra, new_algorithm, create_test_graph};
+use sssp_algos::{dijkstra, bfs, create_test_graph};
 
 fn main() {
     println!("SSSP Algorithms Demo");
@@ -27,7 +27,7 @@ fn main() {
     
     // Run new algorithm
     println!("New Algorithm Results:");
-    let new_algo_distances = new_algorithm(&graph, start_node);
+    let new_algo_distances = bfs(&graph, start_node);
     for (node, distance) in &new_algo_distances {
         if *distance == usize::MAX {
             println!("  Node {}: unreachable", node);
